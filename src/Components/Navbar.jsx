@@ -1,126 +1,30 @@
-import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+// src/Components/Navbar.jsx
+import { Link } from "react-router-dom";
 
-export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-
+export default function Navbar({ user, setUser }) {
   return (
-    <nav className="bg-green-600 text-white shadow-md fixed top-0 left-0 right-0 z-50">
-      <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        
-        {/* Logo */}
-        <Link to="/" className="text-2xl font-bold tracking-wide">
-          MyShop
-        </Link>
-
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-8 font-medium">
-          <li>
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                isActive
-                  ? "border-b-2 border-white pb-1 text-white"
-                  : "text-white hover:text-green-100 transition"
-              }
-            >
-              Home
-            </NavLink>
-          </li>
-
-          <li>
-            <NavLink
-              to="/products"
-              className={({ isActive }) =>
-                isActive
-                  ? "border-b-2 border-white pb-1 text-white"
-                  : "text-white hover:text-green-100 transition"
-              }
-            >
-              Products
-            </NavLink>
-          </li>
-
-          <li>
-            <NavLink
-              to="/about"
-              className={({ isActive }) =>
-                isActive
-                  ? "border-b-2 border-white pb-1 text-white"
-                  : "text-white hover:text-green-100 transition"
-              }
-            >
-              About
-            </NavLink>
-          </li>
-
-          <li>
-            <NavLink
-              to="/buy"
-              className={({ isActive }) =>
-                isActive
-                  ? "border-b-2 border-white pb-1 text-white"
-                  : "text-white hover:text-green-100 transition"
-              }
-            >
-              Buy
-            </NavLink>
-          </li>
-        </ul>
-
-        {/* Mobile Toggle */}
-        <button
-          className="md:hidden text-white"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+    <nav className="bg-green-600 p-4 text-white flex justify-between items-center">
+      <div className="flex gap-4">
+        <Link to="/">Home</Link>
+        <Link to="/products">Products</Link>
+        <Link to="/about">About</Link>
+        <Link to="/buy">Buy</Link>
+        <Link to="/admin">Admin</Link>
       </div>
-
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden bg-green-700 shadow-lg">
-          <ul className="flex flex-col items-center py-4 space-y-4 font-medium">
-            <li>
-              <NavLink
-                onClick={() => setIsOpen(false)}
-                to="/"
-                className="text-white hover:text-green-200 transition"
-              >
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                onClick={() => setIsOpen(false)}
-                to="/products"
-                className="text-white hover:text-green-200 transition"
-              >
-                Products
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                onClick={() => setIsOpen(false)}
-                to="/about"
-                className="text-white hover:text-green-200 transition"
-              >
-                About
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                onClick={() => setIsOpen(false)}
-                to="/buy"
-                className="text-white hover:text-green-200 transition"
-              >
-                Buy
-              </NavLink>
-            </li>
-          </ul>
-        </div>
-      )}
+      <div>
+        {user ? (
+          <>
+            <span className="mr-4">{user.email}</span>
+            <button onClick={() => setUser(null)} className="bg-red-500 p-1 rounded hover:bg-red-600">
+              Logout
+            </button>
+          </>
+        ) : (
+          <Link to="/login" className="bg-blue-500 p-1 rounded hover:bg-blue-600">
+            Login
+          </Link>
+        )}
+      </div>
     </nav>
   );
 }

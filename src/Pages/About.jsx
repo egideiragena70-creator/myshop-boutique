@@ -1,11 +1,11 @@
+// src/Pages/About.jsx
 export default function About() {
   return (
-    <div className="p-6 text-center">
-      <h1 className="text-3xl font-bold mb-4">About Us</h1>
-      <p className="text-gray-700">We are a boutique dedicated to bringing you stylish and affordable clothing.
+    <div className="p-6 max-w-3xl mx-auto">
+      <h1 className="text-3xl font-bold mb-4">WAITING FOR HOSTING EGIDE DEV</h1>
+      <p className="text-gray-700">
+      welcome to EGIDE DEVELPER website are waiting to hosting
       </p>
-      <p>PRODUCTIVE BY EGIDE</p>
-      <p>PHONE NUMBER ARE NOT VISIBLE NOW</p>
     </div>
   );
 }
